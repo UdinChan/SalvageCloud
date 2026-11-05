@@ -1,0 +1,56 @@
+{
+	auto_https disable_redirects
+	log {
+		level FATAL
+	}
+	log http.handlers.reverse_proxy {
+		output discard
+		level FATAL
+	}
+	log http.log.error {
+		output discard
+		level FATAL
+	}
+}
+
+(app_proxy) {
+	encode zstd gzip
+
+	request_body {
+		max_size 9MB
+	}
+
+	handle /api/v1/events* {
+		reverse_proxy {$UPSTREAM:app:3000} {
+			flush_interval -1
+		}
+	}
+
+	handle {
+		reverse_proxy {$UPSTREAM:app:3000}
+	}
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		-Server
+	}
+}
+
+http://{$DOMAIN} {
+	@plain_redirect {
+		not {
+			header X-Forwarded-Proto https
+		}
+		not {
+			path /.well-known/acme-challenge/*
+		}
+	}
+	redir @plain_redirect https://{host}{uri} 308
+	handle {
+		import app_proxy
+	}
+}
+
+{$DOMAIN:localhost} {
+	import app_proxy
+}

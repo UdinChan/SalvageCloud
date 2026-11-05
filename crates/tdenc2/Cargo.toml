@@ -1,0 +1,35 @@
+[package]
+name = "salvage-tdenc2"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+description = "TDENC2, TDVLT2, and TDREC2 cryptographic format primitives"
+
+[dependencies]
+argon2 = "0.5"
+chacha20poly1305 = { version = "0.10", default-features = false, features = ["alloc"] }
+getrandom = { version = "0.3", features = ["wasm_js"] }
+hkdf = "0.12"
+hmac = "0.12"
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+thiserror.workspace = true
+zeroize.workspace = true
+uuid = { version = "1", features = ["v4"] }
+
+[features]
+native-e2e = []
+
+[[bin]]
+name = "tdenc2-e2e-driver"
+path = "test-support/driver.rs"
+required-features = ["native-e2e"]
+test = false
+
+[[test]]
+name = "native_e2e"
+path = "tests/native_e2e.rs"
+required-features = ["native-e2e"]

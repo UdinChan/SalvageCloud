@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4f7f6" />
+    <meta name="description" content="Salvage Cloud — your files, within reach." />
+    <title>Salvage Cloud</title>
+    <link data-trunk rel="rust" data-wasm-opt="z" data-wasm-opt-params="--enable-bulk-memory-opt --enable-nontrapping-float-to-int" />
+    <link data-trunk rel="rust" href="../crypto-worker/Cargo.toml" data-type="worker" data-bindgen-target="web" data-loader-shim data-bin="salvage-crypto-worker" data-wasm-opt="z" data-wasm-opt-params="--enable-bulk-memory-opt --enable-nontrapping-float-to-int" />
+    <link data-trunk rel="css" href="styles.css" />
+    <link data-trunk rel="copy-file" href="favicon.svg" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <noscript>
+      <div class="noscript-message">
+        <strong>Salvage Cloud needs JavaScript to run.</strong>
+        <p>Enable JavaScript in your browser, then reload this page.</p>
+      </div>
+    </noscript>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+/target
+/dist
+/node_modules
+/.e2e-data
+/.dev-data
+/test-results
+/playwright-report
+.env
+.env.production
+/data
+/data-live
+*.local
+.DS_Store

@@ -1,0 +1,56 @@
+[package]
+name = "salvage-backend-core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[features]
+default = []
+e2e-fixture = []
+native-e2e = []
+
+[[bin]]
+name = "salvage-session-e2e-driver"
+path = "test-support/session_driver.rs"
+required-features = ["native-e2e"]
+
+[[bin]]
+name = "salvage-live-e2e-driver"
+path = "test-support/live_driver.rs"
+required-features = ["native-e2e"]
+
+[[test]]
+name = "native_e2e"
+path = "tests/native_e2e.rs"
+required-features = ["native-e2e"]
+
+[dependencies]
+async-stream = "0.3"
+async-trait.workspace = true
+base64.workspace = true
+chacha20poly1305 = "0.10"
+chrono.workspace = true
+constant_time_eq = "0.3"
+dashmap = "6"
+futures-util.workspace = true
+grammers-client = { git = "https://github.com/Lonami/grammers", rev = "d07f96f" }
+grammers-mtsender = { git = "https://github.com/Lonami/grammers", rev = "d07f96f" }
+grammers-session = { git = "https://github.com/Lonami/grammers", rev = "d07f96f", features = ["serde"] }
+grammers-tl-types = { git = "https://github.com/Lonami/grammers", rev = "d07f96f" }
+hex = "0.4"
+qrcode = "0.14"
+rand.workspace = true
+reqwest = { version = "0.13", default-features = false, features = ["json", "multipart", "query", "stream", "rustls", "webpki-roots"] }
+salvage-protocol = { path = "../protocol" }
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+sqlite = "0.37"
+thiserror.workspace = true
+tokio.workspace = true
+tokio-stream = "0.1"
+tracing.workspace = true
+uuid.workspace = true
+zeroize.workspace = true

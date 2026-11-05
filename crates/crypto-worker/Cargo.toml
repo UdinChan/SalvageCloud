@@ -1,0 +1,67 @@
+[package]
+name = "salvage-crypto-worker"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+base64.workspace = true
+getrandom = { version = "0.3", features = ["wasm_js"] }
+salvage-tdenc2 = { path = "../tdenc2" }
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+zeroize.workspace = true
+uuid = { version = "1", features = ["js"] }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+futures-channel = "0.3"
+js-sys = "0.3"
+serde-wasm-bindgen = "0.6"
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+web-sys = { version = "0.3.107", features = [
+    "AbortController",
+    "AbortSignal",
+    "Blob",
+    "BlobPropertyBag",
+    "DedicatedWorkerGlobalScope",
+    "DomStringList",
+    "Event",
+    "File",
+    "FilePropertyBag",
+    "FileSystemDirectoryHandle",
+    "FileSystemFileHandle",
+    "FileSystemGetFileOptions",
+    "FileSystemReadWriteOptions",
+    "FileSystemSyncAccessHandle",
+    "IdbCursor",
+    "IdbDatabase",
+    "IdbFactory",
+    "IdbObjectStore",
+    "IdbOpenDbRequest",
+    "IdbRequest",
+    "IdbTransaction",
+    "IdbTransactionMode",
+    "IdbVersionChangeEvent",
+    "MessageEvent",
+    "Navigator",
+    "ReadableStream",
+    "ReadableStreamDefaultReader",
+    "Request",
+    "RequestCredentials",
+    "RequestInit",
+    "Response",
+    "StorageManager",
+    "Url",
+    "Worker",
+    "WorkerGlobalScope",
+    "WorkerNavigator",
+    "WorkerOptions",
+    "WorkerType",
+] }

@@ -1,0 +1,17 @@
+{
+  "name": "salvage-cloud",
+  "version": "0.1.0",
+  "private": true,
+  "license": "GPL-3.0-only",
+  "description": "Rust/WASM web client and Rust backend for Telegram-backed cloud storage",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:release": "node scripts/build.mjs --release",
+    "test": "npm run test:e2e",
+    "test:e2e": "npm run build && node scripts/run-e2e.mjs",
+    "check": "node scripts/check.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1"
+  }
+}

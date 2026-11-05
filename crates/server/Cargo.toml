@@ -1,0 +1,33 @@
+[package]
+name = "salvage-server"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[features]
+default = []
+e2e-fixture = ["salvage-backend-core/e2e-fixture"]
+
+[dependencies]
+async-stream = "0.3"
+axum.workspace = true
+base64.workspace = true
+chrono.workspace = true
+futures-util.workspace = true
+http.workspace = true
+salvage-backend-core = { path = "../backend-core" }
+salvage-protocol = { path = "../protocol" }
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+tokio.workspace = true
+tokio-util = { version = "0.7", features = ["io"] }
+tokio-stream = { version = "0.1", features = ["sync"] }
+tower = { version = "0.5", features = ["util"] }
+tower-http.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+uuid.workspace = true
+urlencoding = "2"
